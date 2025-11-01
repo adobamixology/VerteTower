@@ -14,11 +14,13 @@ export const getUserDevices = (userid) => {
 
 // Get telemetry data for a specific device
 export const getDeviceTelemetry = (userid, auid) => {
+  console.log(`📡 API Call: /telemetry/${userid}/device/${auid}`)
   return client.get(`/telemetry/${encodeURIComponent(userid)}/device/${encodeURIComponent(auid)}`)
 }
 
 // Fallback: Get telemetry by model/auid from DB route
 export const getDeviceTelemetryByModel = (model, auid) => {
+  console.log(`📡 API Call: /telemetry/db/${model}/${auid}`)
   return client.get(`/telemetry/db/${encodeURIComponent(model)}/${encodeURIComponent(auid)}`)
 }
 
