@@ -964,8 +964,7 @@ export default function Team() {
             </svg>
             Meet the Innovators
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-green-500 to-green-800 bg-clip-text text-transparent">
-            Our Leadership Team
+          <h1 className="text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-green-500 to-green-800 bg-clip-text text-transparent">Our Team
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Driven by passion and expertise, our team combines decades of experience in agriculture, 
