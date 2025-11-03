@@ -685,7 +685,9 @@ import teamMember2 from '../assets/team/jenny-headshot.jpg'
 import teamMember3 from '../assets/team/edward-headshot.png'
 import teamMember4 from '../assets/team/charis-headshot.jpg'
 import teamMember5 from '../assets/team/kwame-headshot.jpg'
-import teamMember6 from '../assets/team/papelty-headshot.jpg'
+import teamMember6 from '../assets/team/nanaama-headshot.jpg'
+import teamMember7 from '../assets/team/rafia-headshot.jpg'
+
 
 export default function Team() {
   const [activeMember, setActiveMember] = useState(null)
@@ -698,83 +700,97 @@ export default function Team() {
       bio: "CEO of Verte Tower, an agritech company developing climate-smart farming technologies to enhance food security in Africa. With 7+ years’ experience in sustainable community development and entrepreneurship and a background in Biochemistry, Georgina combines science and innovation to drive social impact and empower communities.",
       image: teamMember1,
       social: {
-        linkedin: "https://linkedin.com/in/georginaboamah",
+        linkedin: "https://www.linkedin.com/in/yaa-kwartemaa-boamah/",
         facebook: "https://facebook.com/georginaboamah",
         instagram: "https://instagram.com/georginaboamah"
       },
-      expertise: ["Climate-Smart Agriculture","Sustainable Development", "Entreprenuraship & Leadership", "Biomedical Research","Social Innovation"],
+      expertise: ["Climate-Smart Agriculture","Sustainable Development", "Entreprenuraship & Leadership", "Biomedical Research","Social Innovation","Community Empowerment"],
       achievements: "Founded Verte Tower, advancing climate-smart urban and peri-urban agriculture. Contributed to biomedical research on COVID-19, malaria, and soil-transmitted helminths. Led and supported community empowerment projects promoting sustainability and inclusive growth.",
     },
     {
       id: 2,
       name: "Jennifer O. Danquah",
       role: "Co-Founder & CFO",
-      bio: "IoT and automation expert specializing in agricultural technology. Former tech lead at major agri-tech company.",
+      bio: "Sustainability Advocate | Environmental Scientist | Finance Professional | Co-founder | Changemaker. Jennifer believes that “Sustainability is not just a buzzword—it’s a necessity.” With a background in Environmental Science and professional experience in Finance, she thrives at the intersection of business and sustainability, developing solutions that drive both profitability and positive impact.Passionate about innovation and long-term change, Jennifer channels her expertise into initiatives that promote responsible growth and environmental stewardship. As a co-founder, leader, and volunteer, she is deeply committed to collective action and empowering others to build a more sustainable future.",
       image: teamMember2,
       social: {
-        linkedin: "https://linkedin.com/in/jenniferdanquah",
+        linkedin: "https://www.linkedin.com/in/odanquahjennifer/",
         facebook: "https://facebook.com/jenniferdanquah",
         instagram: "https://instagram.com/jenniferdanquah"
       },
-      expertise: ["IoT Systems", "Financial Management", "Tech Innovation"],
-      achievements: "Developed award-winning automation systems for vertical farming"
+      expertise: ["Sustainability & Environmental Management", "Sustainable Finance","Leadership & Collaboration","Innovation & Impact Strategy","Community Engagement & Advocacy"],
+      achievements: "Co-founded initiatives promoting sustainable business practices and environmental awareness. Bridged finance and sustainability to support green innovation and responsible investments. Led and participated in community and volunteer projects focused on environmental impact. Advocated for sustainable development goals (SDGs) through education and collaboration."
     },
     {
       id: 3,
-      name: "Edward Addo Boakye",
-      role: "Designer & Developer",
-      bio: "Farm management specialist with expertise in hydroponic systems. 10+ years in agricultural operations.",
-      image: teamMember3,
-      social: {
-        linkedin: "https://linkedin.com/in/edwardaddo",
-        facebook: "https://facebook.com/edwardaddo",
-        instagram: "https://instagram.com/edwardaddo"
-      },
-      expertise: ["Hydroponic Systems", "UI/UX Design", "Full-Stack Development"],
-      achievements: "Designed 100+ efficient farming layouts and digital solutions"
-    },
-    {
-      id: 4,
       name: "Charis Borquaye",
       role: "Business Development Officer",
-      bio: "Plant biologist focused on optimizing growth in controlled environments. Masters in Plant Biotechnology.",
+      bio: "Investment Professional | Private Equity | Development Finance | Impact Investing | Financial Modeling | Equity Investments | Valuation. Charis is an investment professional passionate about fueling the growth of private companies across Africa through private equity, development finance, and impact investing. With over three years of experience in investment banking and four years as an equity investor, she brings strong expertise in financial modeling, valuation, due diligence, and business analysis. Driven by a commitment to closing the financing gap for African enterprises, Charis focuses on unlocking opportunities in underserved markets, supporting entrepreneurs, and driving sustainable economic growth. Her approach blends analytical precision with strategic insight to deliver both financial returns and social impact.",
       image: teamMember4,
       social: {
-        linkedin: "https://linkedin.com/in/charisborquaye",
+        linkedin: "https://www.linkedin.com/in/charisborquaye/",
         facebook: "https://facebook.com/charisborquaye",
         instagram: "https://instagram.com/charisborquaye"
       },
-      expertise: ["Plant Biology", "Business Strategy", "Client Relations"],
-      achievements: "Expanded operations to 3 new countries in 2 years"
+      expertise: ["Private Equity & Impact Investing","Financial Modeling & Valuation","Development Finance","Investment Analysis & Due Diligence", "Business Strategy & Portfolio Management", "Negotiation & Stakeholder Engagement"],
+      achievements: "Structured and managed equity investment deals supporting SMEs across Africa. Led financial modeling and company valuation for investment opportunities. Conducted due diligence and market research to inform strategic investment decisions. Partnered with investors and development agencies to advance impact-driven financing initiatives."
+    },
+    {
+      id: 6,
+      name: "Nana Ama Serwaa Osei",
+      role: "Nutritionist and Food Scientist",
+      bio: "MSc. Bioethics Candidate | Registered Nutritionist | Nutrition Content Strategist | Research Assistant | Digital Marketer. Nana Ama is a passionate advocate for SDGs 2, 3, 4 & 5, STEM, and youth and women empowerment. With a background in Nutrition and Food Science, she began her journey improving health through better diets, later expanding her focus to the ethical dimensions of health and nutrition. As an aspiring bioethicist, she explores how ethics can guide research, policy, and public health practices, particularly in Africa where issues of access, fairness, and cultural respect are most profound.",
+      image: teamMember6,
+      social: {
+        linkedin: "https://www.linkedin.com/in/nana-ama-serwaa-osei-r-nutr-b9519918b/",
+        facebook: "https://facebook.com/nanaamaosei",
+        instagram: "https://instagram.com/nanaamaosei"
+      },
+      expertise: ["Nutrition & Food Science", "Bioethics & Public Health Ethics", "Research & Policy Analysis", "Content Strategy & Digital Marketing", "Advocacy & Community Engagement","Women and Youth Empowerment"],
+      achievements: "Conducted research and policy analysis in nutrition and public health ethics. Created impactful nutrition and health content to promote awareness and behavior change.Advocated for ethical and equitable health systems through education and outreach. Collaborated on initiatives advancing women’s empowerment and STEM education."
+    },
+    {
+      id: 4,
+      name: "Edward Addo Boakye",
+      role: "Designer & Web Developer",
+      bio: "Edward is a highly detail-oriented and results-driven MERN Stack Developer with a strong passion for creating robust, scalable, and secure web applications that address real-world challenges. He possesses hands-on experience in Node.js, Express.js, MongoDB, NestJS, and Prisma, specializing in the development of RESTful APIs, database management, and the integration of third-party services to support modern, high-performing applications. He has a solid foundation in data structures, authentication systems, and performance optimization, and adheres to clean coding principles to deliver maintainable and efficient software solutions. Proficient with industry-standard tools such as Postman and Git, Edward ensures seamless development workflows, reliable deployments, and effective collaboration across teams. Driven by continuous learning and innovation, he remains committed to leveraging technology to build impactful, user-centered solutions that enhance productivity and create measurable value.",
+      image: teamMember3,
+      social: {
+        linkedin: "https://www.linkedin.com/in/edward-addo-boakye1101/",
+        facebook: "https://facebook.com/edwardaddo",
+        instagram: "https://instagram.com/edwardaddo"
+      },
+      expertise: ["Backend Development (Node.js, Express.js, NestJS, Prisma)", "MERN Stack Development", "Database Design & Management (MongoDB)", "RESTful API Development", "IT Support & Troubleshooting","Graphic Design & UI Enhancement","Version Control (Git, GitHub)", "Testing & Debugging (Postman,Thunder Client),", "Deployment using Netlify, Vercel, etc"],
+      achievements: "Built and deployed RESTful APIs using Node.js, Express.js, and MongoDB. Integrated third-party services and APIs to enhance system functionality. Optimized backend performance and implemented secure authentication systems. Provided IT support and technical troubleshooting across multiple platforms. Designed visual assets and UI elements using creative tools such as Adobe Photoshop, Illustrator, Canva, and Figma to improve user experience."
     },
     {
       id: 5,
       name: "Kwame Amoah Mintah",
       role: "Data Analyst",
-      bio: "Data science expert with focus on agricultural analytics and predictive modeling for crop optimization.",
+      bio: "Political Research & Data Analyst | Data Engineer Associate | Microsoft Excel | Power BI | SQL | Python. Kwame is an early-career data professional with a background in Political Science and a growing specialization in data analysis and engineering. He is passionate about leveraging research and data to understand and improve the systems that shape societies. Driven by curiosity and a commitment to evidence-based decision-making, he focuses on applying data to policy evaluation, social impact research, and political behavior analysis. Currently enrolled in the Blossom Academy Data Analysis Program, he is building advanced skills in data analytics, statistical tools, and data storytelling—strengthening his ability to turn complex datasets into meaningful insights that drive informed action.",
       image: teamMember5,
       social: {
-        linkedin: "https://linkedin.com/in/kwamemintah",
+        linkedin: "https://www.linkedin.com/in/kwame-amoah-mintah/",
         facebook: "https://facebook.com/kwamemintah",
         instagram: "https://instagram.com/kwamemintah"
       },
-      expertise: ["Data Analytics", "Machine Learning", "Predictive Modeling"],
-      achievements: "Improved crop yield predictions by 35% through advanced analytics"
+      expertise: ["Data Analysis & Visualization","Research & Policy Evaluation","SQL & Python Programming","Power BI & Excel Analytics","Data Storytelling","Political and Social Data Research"],
+      achievements: "Conducted research and data-driven studies on political and social systems. Developed data dashboards and reports using Microsoft Excel and Power BI. Applied SQL and Python for data management, cleaning, and analysis."
     },
     {
-      id: 6,
-      name: "Papelty Adobea Sam",
-      role: "Marketing Assistant",
-      bio: "Digital marketing specialist with expertise in agricultural branding and community engagement strategies.",
-      image: teamMember6,
+      id: 7,
+      name: "Rafia (Kanyity) Imoro-Kipo",
+      role: "Marketing & Administrative Assistant",
+      bio: "Research Assistant | Climate Change Advocate | Community Engagement & Collaboration | Public Speaker | Business-Oriented Professional. Rafia is an Environmental and Sustainability enthusiast passionate about research, advocacy, and environmental stewardship. She is dedicated to promoting awareness and driving action on key issues such as climate change, conservation, and sustainable development. With a strong commitment to collaboration and innovation, she seeks to inspire others to protect natural resources and contribute to a healthier planet.",
+      image: teamMember7,
       social: {
-        linkedin: "https://linkedin.com/in/papeltysam",
-        facebook: "https://facebook.com/papeltysam",
-        instagram: "https://instagram.com/papeltysam"
+        linkedin: "https://www.linkedin.com/in/rafia-imoro-kipo/",
+        facebook: "https://facebook.com/kwamemintah",
+        instagram: "https://instagram.com/kwamemintah"
       },
-      expertise: ["Digital Marketing", "Brand Strategy", "Community Engagement"],
-      achievements: "Grew social media presence by 300% in one year"
-    }
+      expertise: ["Environmental Research & Sustainability","Climate Change Advocacy","Community Engagement & Collaboration","Public Speaking & Awareness Campaigns","Business & Project Management"],
+      achievements: "Improved crop yield predictions by 35% through advanced analytics"
+    },
   ]
 
   // Enhanced Social Icons Component
@@ -853,7 +869,7 @@ export default function Team() {
             onLoad={() => setImageLoaded(true)}
           />
         </div>
-        <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-r from-green-400 to-blue-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-r from-green-400 to-green-700 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
       </div>
     )
   }
@@ -888,7 +904,7 @@ export default function Team() {
                 name={member.name} 
               />
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name || 'Team Member'}</h3>
-              <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold inline-block">
+              <div className="bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-1 rounded-full text-sm font-semibold inline-block">
                 {member.role || 'Team Role'}
               </div>
             </div>
@@ -948,7 +964,7 @@ export default function Team() {
             </svg>
             Meet the Innovators
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-green-500 to-green-800 bg-clip-text text-transparent">
             Our Leadership Team
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -975,11 +991,11 @@ export default function Team() {
                 />
                 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-green-900 mb-2 group-hover:text-green-700 transition-colors duration-300">
                     {member.name}
                   </h3>
                   
-                  <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4 transform group-hover:scale-105 transition-transform duration-300">
+                  <div className="bg-gradient-to-r from-green-500 to-green-800 text-white px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4 transform group-hover:scale-105 transition-transform duration-300">
                     {member.role}
                   </div>
                   
@@ -1025,7 +1041,7 @@ export default function Team() {
         </div>
 
         {/* Enhanced Values Section */}
-        <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-8 md:p-12 text-white mb-20 transform hover:shadow-2xl transition-all duration-500">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-3xl p-8 md:p-12 text-white mb-20 transform hover:shadow-2xl transition-all duration-500">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-6">Our Core Values</h2>
             <p className="text-green-100 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -1074,7 +1090,7 @@ export default function Team() {
 
         {/* Enhanced CTA Section */}
         <div className="text-center bg-white rounded-3xl p-12 shadow-2xl border border-gray-100">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">Join Our Mission</h2>
+          <h2 className="text-4xl font-bold text-green-900 mb-6">Join Our Mission</h2>
           <p className="text-gray-600 text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             We're always looking for passionate individuals who want to make a meaningful impact 
             in sustainable agriculture and food security.
@@ -1082,7 +1098,7 @@ export default function Team() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a 
               href="mailto:careers@vertetower.com" 
-              className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-10 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center group"
+              className="bg-gradient-to-r from-green-600 to-green-800 text-white px-10 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center group"
             >
               <svg className="w-5 h-5 mr-3 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
