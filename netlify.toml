@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Proxy API requests to avoid CORS issues
+# This makes /api/* requests go through Netlify to your backend
+[[redirects]]
+  from = "/api/*"
+  to = "https://cctelemetry-api-prod-c5b7aqawfxeybvbd.eastus-01.azurewebsites.net/api/:splat"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+

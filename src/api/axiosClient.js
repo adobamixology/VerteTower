@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-// Use environment variable in production, fallback to '/api' for dev proxy
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+// Use '/api' which will be proxied by Vite in dev and Netlify in production
+// This avoids CORS issues by making requests appear to come from the same origin
+const BASE_URL = '/api';
 
 const client = axios.create({
   baseURL: BASE_URL,
