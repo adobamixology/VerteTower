@@ -696,8 +696,8 @@ export default function Team() {
     {
       id: 1,
       name: "Georgina Boamah",
-      role: "Founder & CEO",
-      bio: "CEO of Verte Tower, an agritech company developing climate-smart farming technologies to enhance food security in Africa. With 7+ years’ experience in sustainable community development and entrepreneurship and a background in Biochemistry, Georgina combines science and innovation to drive social impact and empower communities.",
+      role: "Chief Executive Officer",
+      bio: "With 7+ years’ experience in sustainable community development and entrepreneurship and a background in Biochemistry, Georgina combines science and innovation to drive social impact and empower communities.",
       image: teamMember1,
       social: {
         linkedin: "https://www.linkedin.com/in/yaa-kwartemaa-boamah/",
@@ -710,7 +710,7 @@ export default function Team() {
     {
       id: 2,
       name: "Jennifer O. Danquah",
-      role: "Co-Founder & CFO",
+      role: "Chief Finance & Sustainability Officer",
       bio: "Sustainability Advocate | Environmental Scientist | Finance Professional | Co-founder | Changemaker. Jennifer believes that “Sustainability is not just a buzzword—it’s a necessity.” With a background in Environmental Science and professional experience in Finance, she thrives at the intersection of business and sustainability, developing solutions that drive both profitability and positive impact.Passionate about innovation and long-term change, Jennifer channels her expertise into initiatives that promote responsible growth and environmental stewardship. As a co-founder, leader, and volunteer, she is deeply committed to collective action and empowering others to build a more sustainable future.",
       image: teamMember2,
       social: {
