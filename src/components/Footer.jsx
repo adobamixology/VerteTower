@@ -1,7 +1,30 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Footer() {
+  const navigate = useNavigate()
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  // Enhanced link handler that scrolls to top after navigation
+  const handleLinkClick = (to) => {
+    // Navigate first
+    navigate(to)
+    // Then scroll to top
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }, 100) // Small delay to ensure navigation completes
+  }
+
   // UN SDG official SVG icons (public URLs)
   const sdgIcons = [
     { number: 1, name: 'No Poverty', url: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg' },
@@ -128,10 +151,42 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block">About Us</Link></li>
-              <li><Link to="/services" className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block">Services</Link></li>
-              <li><Link to="/team" className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block">Our Team</Link></li>
-              <li><Link to="/contact" className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block">Contact</Link></li>
+              <li>
+                <Link 
+                  to="/about" 
+                  onClick={() => handleLinkClick('/about')}
+                  className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/services" 
+                  onClick={() => handleLinkClick('/services')}
+                  className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/team" 
+                  onClick={() => handleLinkClick('/team')}
+                  className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block"
+                >
+                  Our Team
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/contact" 
+                  onClick={() => handleLinkClick('/contact')}
+                  className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -695,15 +695,15 @@ export default function Team() {
       id: 1,
       name: "Georgina Boamah",
       role: "Founder & CEO",
-      bio: "Agricultural scientist with 15+ years experience in sustainable farming. PhD in Agricultural Engineering from KNUST.",
+      bio: "CEO of Verte Tower, an agritech company developing climate-smart farming technologies to enhance food security in Africa. With 7+ years’ experience in sustainable community development and entrepreneurship and a background in Biochemistry, Georgina combines science and innovation to drive social impact and empower communities.",
       image: teamMember1,
       social: {
         linkedin: "https://linkedin.com/in/georginaboamah",
         facebook: "https://facebook.com/georginaboamah",
         instagram: "https://instagram.com/georginaboamah"
       },
-      expertise: ["Sustainable Farming", "Agricultural Engineering", "Leadership"],
-      achievements: "Led 50+ sustainable farming projects across West Africa"
+      expertise: ["Climate-Smart Agriculture","Sustainable Development", "Entreprenuraship & Leadership", "Biomedical Research","Social Innovation"],
+      achievements: "Founded Verte Tower, advancing climate-smart urban and peri-urban agriculture. Contributed to biomedical research on COVID-19, malaria, and soil-transmitted helminths. Led and supported community empowerment projects promoting sustainability and inclusive growth.",
     },
     {
       id: 2,
