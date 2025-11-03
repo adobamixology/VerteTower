@@ -779,14 +779,14 @@ export default function Team() {
     },
     {
       id: 7,
-      name: "Rafia (Kanyity) Imoro-Kipo",
+      name: "Rafia Kanyity Imoro-Kipo",
       role: "Marketing & Administrative Assistant",
       bio: "Research Assistant | Climate Change Advocate | Community Engagement & Collaboration | Public Speaker | Business-Oriented Professional. Rafia is an Environmental and Sustainability enthusiast passionate about research, advocacy, and environmental stewardship. She is dedicated to promoting awareness and driving action on key issues such as climate change, conservation, and sustainable development. With a strong commitment to collaboration and innovation, she seeks to inspire others to protect natural resources and contribute to a healthier planet.",
       image: teamMember7,
       social: {
         linkedin: "https://www.linkedin.com/in/rafia-imoro-kipo/",
-        facebook: "https://facebook.com/kwamemintah",
-        instagram: "https://instagram.com/kwamemintah"
+        facebook: "https://web.facebook.com/rafia.imoro.2025",
+        instagram: "https://www.instagram.com/ms__raf/"
       },
       expertise: ["Environmental Research & Sustainability","Climate Change Advocacy","Community Engagement & Collaboration","Public Speaking & Awareness Campaigns","Business & Project Management"],
       achievements: "Improved crop yield predictions by 35% through advanced analytics"
