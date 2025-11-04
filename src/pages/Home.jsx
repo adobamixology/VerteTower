@@ -127,7 +127,7 @@ export default function Home() {
 
   // WhatsApp contact number
   const whatsappNumber = '233245992385'
-  const whatsappMessage = 'Hello, Kindly proceed to view Verte Tower Products Catalogue.'
+  const whatsappMessage = "Hello, I want to enquire about your products."
 
   return (
     <div className="bg-white">

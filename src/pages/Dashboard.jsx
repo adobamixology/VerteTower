@@ -110,7 +110,7 @@ export default function Dashboard() {
     }
   }
 
-  // Mobile-optimized chart options
+  // Enhanced chart options for better readability and alignment
   const createChartOptions = (title, min = null, max = null) => ({
     responsive: true,
     maintainAspectRatio: false,
@@ -132,11 +132,11 @@ export default function Dashboard() {
         padding: 12,
         boxPadding: 6,
         titleFont: {
-          size: 12,
+          size: 14,
           weight: '600'
         },
         bodyFont: {
-          size: 12,
+          size: 14,
           weight: '500'
         },
         callbacks: {
@@ -159,11 +159,12 @@ export default function Dashboard() {
         ticks: {
           color: '#9ca3af',
           font: {
-            size: 10,
+            size: 11,
             weight: '400'
           },
           maxRotation: 45,
-          padding: 8
+          padding: 8,
+          maxTicksLimit: 6
         }
       },
       y: {
@@ -177,10 +178,16 @@ export default function Dashboard() {
         ticks: {
           color: '#9ca3af',
           font: {
-            size: 10,
+            size: 11,
             weight: '400'
           },
-          padding: 8
+          padding: 8,
+          callback: function(value) {
+            if (value >= 1000) {
+              return (value / 1000).toFixed(0) + 'k'
+            }
+            return value
+          }
         },
         border: {
           display: false
@@ -197,11 +204,14 @@ export default function Dashboard() {
       },
       line: {
         tension: 0.4,
-        borderWidth: 2,
+        borderWidth: 3,
         fill: true,
         borderCapStyle: 'round',
         borderJoinStyle: 'round'
       }
+    },
+    onHover: (event, chartElement) => {
+      event.native.target.style.cursor = chartElement[0] ? 'pointer' : 'default'
     }
   })
 
@@ -308,7 +318,7 @@ export default function Dashboard() {
     )
   }
 
-  // Mobile-optimized SensorGauge
+  // Enhanced SensorGauge with larger circles and better centering
   const SensorGauge = ({ title, value, unit, min = 0, max = 100, color = 'green' }) => {
     const percentage = ((value - min) / (max - min)) * 100
     const clampedPercentage = Math.min(Math.max(percentage, 0), 100)
@@ -322,37 +332,49 @@ export default function Dashboard() {
       pink: '#ec4899'
     }
 
+    const gaugeSize = 120 // Increased size for better visibility
+    const center = gaugeSize / 2
+    const radius = center - 8
+    const circumference = 2 * Math.PI * radius
+
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
-        <h3 className="text-sm font-medium text-gray-600 mb-3">{title}</h3>
-        <div className="relative inline-block">
-          <svg className="w-20 h-20 md:w-24 md:h-24 transform -rotate-90">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-5 flex flex-col items-center justify-center h-full min-h-[180px]">
+        <h3 className="text-sm font-medium text-gray-600 mb-4 text-center">{title}</h3>
+        <div className="relative flex items-center justify-center">
+          <svg 
+            className="transform -rotate-90" 
+            width={gaugeSize} 
+            height={gaugeSize}
+            style={{ minWidth: gaugeSize, minHeight: gaugeSize }}
+          >
+            {/* Background circle */}
             <circle
-              cx="32"
-              cy="32"
-              r="28"
+              cx={center}
+              cy={center}
+              r={radius}
               stroke="#f3f4f6"
-              strokeWidth="6"
+              strokeWidth="8"
               fill="none"
             />
+            {/* Progress circle */}
             <circle
-              cx="32"
-              cy="32"
-              r="28"
+              cx={center}
+              cy={center}
+              r={radius}
               stroke={colorMap[color]}
-              strokeWidth="6"
+              strokeWidth="8"
               fill="none"
-              strokeDasharray="176"
-              strokeDashoffset={176 - (176 * clampedPercentage) / 100}
+              strokeDasharray={circumference}
+              strokeDashoffset={circumference - (circumference * clampedPercentage) / 100}
               strokeLinecap="round"
               className="transition-all duration-1000 ease-out"
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-lg md:text-xl font-bold text-gray-900">
-              {value !== null && value !== undefined ? value : '--'}
+            <span className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+              {value !== null && value !== undefined ? value.toFixed(1) : '--'}
             </span>
-            <span className="text-xs text-gray-500">{unit}</span>
+            <span className="text-sm text-gray-500 mt-1">{unit}</span>
           </div>
         </div>
       </div>
@@ -388,23 +410,23 @@ export default function Dashboard() {
     </button>
   )
 
-  // Mobile-optimized Chart Container
+  // Enhanced Chart Container with better alignment
   const ChartContainer = ({ title, children, className = '' }) => (
-    <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 ${className}`}>
-      <div className="flex items-center justify-between mb-4">
+    <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 flex flex-col ${className}`}>
+      <div className="flex items-center justify-between mb-4 flex-shrink-0">
         <h3 className="text-base md:text-lg font-semibold text-gray-900">{title}</h3>
         <div className="flex items-center space-x-2 text-xs text-gray-500 bg-green-50 px-2 py-1 rounded-full border border-green-100">
           <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
           <span>Live</span>
         </div>
       </div>
-      <div className="relative">
+      <div className="flex-1 min-h-0">
         {children}
       </div>
     </div>
   )
 
-  // Mobile-optimized Overview Tab
+  // Enhanced Overview Tab with better centered sensor gauges
   const OverviewTab = () => (
     <div className="space-y-4 md:space-y-6">
       {/* Statistics Overview */}
@@ -461,11 +483,11 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Sensor Readings */}
+        {/* Enhanced Sensor Readings with larger centered circles */}
         <div>
           {selectedDevice && (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-              <div className="flex items-center justify-between mb-4 md:mb-6">
+              <div className="flex items-center justify-between mb-6">
                 <div className="flex-1 min-w-0">
                   <h2 className="text-lg font-semibold text-gray-900 truncate">
                     {selectedDevice.nickname || selectedDevice.serial}
@@ -482,69 +504,81 @@ export default function Dashboard() {
               </div>
 
               {realtime.error && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
                   Failed to refresh data
                 </div>
               )}
 
               {readings ? (
-                <div className="grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-3">
-                  <SensorGauge
-                    title="Temperature"
-                    value={readings.t}
-                    unit="°C"
-                    min={15}
-                    max={35}
-                    color="orange"
-                  />
-                  <SensorGauge
-                    title="Humidity"
-                    value={readings.h}
-                    unit="%"
-                    min={30}
-                    max={90}
-                    color="cyan"
-                  />
-                  <SensorGauge
-                    title="Light"
-                    value={readings.l}
-                    unit="lux"
-                    min={0}
-                    max={2000}
-                    color="yellow"
-                  />
-                  <SensorGauge
-                    title="Battery"
-                    value={readings.b}
-                    unit="%"
-                    min={0}
-                    max={100}
-                    color="green"
-                  />
-                  <SensorGauge
-                    title="Pressure"
-                    value={readings.p}
-                    unit="hPa"
-                    min={900}
-                    max={1100}
-                    color="purple"
-                  />
-                  {readings.ph && (
+                <div className="grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-3">
+                  <div className="flex justify-center">
                     <SensorGauge
-                      title="pH Level"
-                      value={readings.ph}
-                      unit=""
-                      min={0}
-                      max={14}
-                      color="pink"
+                      title="Temperature"
+                      value={readings.t}
+                      unit="°C"
+                      min={15}
+                      max={35}
+                      color="orange"
                     />
+                  </div>
+                  <div className="flex justify-center">
+                    <SensorGauge
+                      title="Humidity"
+                      value={readings.h}
+                      unit="%"
+                      min={30}
+                      max={90}
+                      color="cyan"
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <SensorGauge
+                      title="Light"
+                      value={readings.l}
+                      unit="lux"
+                      min={0}
+                      max={2000}
+                      color="yellow"
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <SensorGauge
+                      title="Battery"
+                      value={readings.b}
+                      unit="%"
+                      min={0}
+                      max={100}
+                      color="green"
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <SensorGauge
+                      title="Pressure"
+                      value={readings.p}
+                      unit="hPa"
+                      min={900}
+                      max={1100}
+                      color="purple"
+                    />
+                  </div>
+                  {readings.ph && (
+                    <div className="flex justify-center">
+                      <SensorGauge
+                        title="pH Level"
+                        value={readings.ph}
+                        unit=""
+                        min={0}
+                        max={14}
+                        color="pink"
+                      />
+                    </div>
                   )}
                 </div>
               ) : (
-                <div className="text-center py-8">
-                  <div className="w-12 h-12 text-gray-400 mx-auto mb-3">📊</div>
-                  <h3 className="text-base font-medium text-gray-900 mb-2">No Data Available</h3>
-                  <p className="text-gray-500 text-sm">Waiting for sensor readings...</p>
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 text-gray-400 mx-auto mb-4">📊</div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No Data Available</h3>
+                  <p className="text-gray-500">Waiting for sensor readings...</p>
                 </div>
               )}
             </div>
@@ -554,15 +588,15 @@ export default function Dashboard() {
     </div>
   )
 
-  // Mobile-optimized Analytics Tab
+  // Enhanced Analytics Tab with better chart alignment
   const AnalyticsTab = () => (
     <div className="space-y-4 md:space-y-6">
       {historicalData.temperature.length > 0 ? (
         <>
-          {/* Main Charts */}
+          {/* Main Charts - Improved grid layout */}
           <div className="space-y-4 md:space-y-6">
-            <ChartContainer title="Temperature Trend">
-              <div className="h-48 md:h-64">
+            <ChartContainer title="Temperature Trend" className="w-full">
+              <div className="h-56 md:h-72 lg:h-80">
                 <Line
                   data={createChartData(historicalData.temperature, 'Temperature', 'temperature')}
                   options={createChartOptions('Temperature', 15, 35)}
@@ -570,9 +604,9 @@ export default function Dashboard() {
               </div>
             </ChartContainer>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
               <ChartContainer title="Humidity Trend">
-                <div className="h-48 md:h-64">
+                <div className="h-56 md:h-64 lg:h-72">
                   <Line
                     data={createChartData(historicalData.humidity, 'Humidity', 'humidity')}
                     options={createChartOptions('Humidity', 30, 90)}
@@ -581,7 +615,7 @@ export default function Dashboard() {
               </ChartContainer>
 
               <ChartContainer title="Light Intensity">
-                <div className="h-48 md:h-64">
+                <div className="h-56 md:h-64 lg:h-72">
                   <Line
                     data={createChartData(historicalData.light, 'Light', 'light')}
                     options={createChartOptions('Light', 0, 2000)}
@@ -590,9 +624,9 @@ export default function Dashboard() {
               </ChartContainer>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
               <ChartContainer title="Battery Level">
-                <div className="h-48 md:h-64">
+                <div className="h-56 md:h-64 lg:h-72">
                   <Line
                     data={createChartData(historicalData.battery, 'Battery', 'battery')}
                     options={createChartOptions('Battery', 0, 100)}
@@ -601,7 +635,7 @@ export default function Dashboard() {
               </ChartContainer>
 
               <ChartContainer title="Pressure">
-                <div className="h-48 md:h-64">
+                <div className="h-56 md:h-64 lg:h-72">
                   <Line
                     data={createChartData(historicalData.pressure, 'Pressure', 'pressure')}
                     options={createChartOptions('Pressure', 900, 1100)}
@@ -609,6 +643,32 @@ export default function Dashboard() {
                 </div>
               </ChartContainer>
             </div>
+
+            {/* Additional charts for pH and Conductivity if available */}
+            {(historicalData.ph.length > 0 || historicalData.conductivity.length > 0) && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+                {historicalData.ph.length > 0 && (
+                  <ChartContainer title="pH Level">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.ph, 'pH', 'ph')}
+                        options={createChartOptions('pH', 0, 14)}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+                {historicalData.conductivity.length > 0 && (
+                  <ChartContainer title="Conductivity">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.conductivity, 'Conductivity', 'conductivity')}
+                        options={createChartOptions('Conductivity')}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+              </div>
+            )}
           </div>
         </>
       ) : (

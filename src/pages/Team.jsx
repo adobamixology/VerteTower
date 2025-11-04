@@ -1097,7 +1097,7 @@ export default function Team() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a 
-              href="mailto:careers@vertetower.com" 
+              href="mailto:info@vertetower.com" 
               className="bg-gradient-to-r from-green-600 to-green-800 text-white px-10 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center group"
             >
               <svg className="w-5 h-5 mr-3 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
