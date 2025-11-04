@@ -189,8 +189,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-black bg-opacity-40" />
               
               {/* Content */}
-              <div className="relative h-full flex items-center justify-center text-center text-white">
-                <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 transform transition-all duration-700 delay-300 ${
+              <div className="relative h-full flex items-center justify-center text-center text-white z-10">
+                <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 transform transition-all duration-700 delay-300 z-10 relative ${
                   index === currentSlide 
                     ? 'translate-y-0 opacity-100' 
                     : 'translate-y-10 opacity-0'
@@ -203,14 +203,22 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link 
-                      to="/services" 
-                      className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105 text-lg"
+                      to="/products" 
+                      className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105 text-lg z-20 relative"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
                     >
-                      Explore Services
+                      Explore Products
                     </Link>
                     <Link 
-                      to="/contact" 
-                      className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-300 transform hover:scale-105 text-lg"
+                      to="/register" 
+                      className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-300 transform hover:scale-105 text-lg z-20 relative"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
                     >
                       Get Started
                     </Link>

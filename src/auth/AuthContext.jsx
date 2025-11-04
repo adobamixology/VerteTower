@@ -8,7 +8,19 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const stored = localStorage.getItem('user')
-    if (stored) setUser(JSON.parse(stored))
+    if (stored) {
+      const userData = JSON.parse(stored)
+      // Development helper: Check for admin override
+      const adminOverride = localStorage.getItem('adminOverride')
+      if (adminOverride === 'true') {
+        userData.isAdmin = true
+        userData.role = 'admin'
+        setUser(userData)
+        localStorage.setItem('user', JSON.stringify(userData))
+      } else {
+        setUser(userData)
+      }
+    }
   }, [])
 
   const login = async (email, password) => {
@@ -16,7 +28,12 @@ export function AuthProvider({ children }) {
     const data = resp.data
     localStorage.setItem('accessToken', data.accessToken)
     if (data.refreshToken) localStorage.setItem('refreshToken', data.refreshToken)
-    const u = { email: data.email || email, userid: data.userid || data.userId || data.id }
+    const u = { 
+      email: data.email || email, 
+      userid: data.userid || data.userId || data.id,
+      role: data.role || 'user',
+      isAdmin: data.role === 'admin' || data.isAdmin || false
+    }
     localStorage.setItem('user', JSON.stringify(u))
     setUser(u)
     return u

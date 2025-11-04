@@ -162,11 +162,11 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/services" 
-                  onClick={() => handleLinkClick('/services')}
+                  to="/products" 
+                  onClick={() => handleLinkClick('/products')}
                   className="text-green-100 hover:text-white transition duration-300 hover:translate-x-1 inline-block"
                 >
-                  Services
+                  Products
                 </Link>
               </li>
               <li>
