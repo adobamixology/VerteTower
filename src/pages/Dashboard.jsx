@@ -54,7 +54,12 @@ export default function Dashboard() {
     battery: [],
     pressure: [],
     ph: [],
-    conductivity: []
+    conductivity: [],
+    waterTemperature: [],
+    uv: [],
+    turbidity: [],
+    voltage: [],
+    current: []
   })
 
   // Professional chart colors with enhanced gradients
@@ -107,6 +112,41 @@ export default function Dashboard() {
       border: 'rgb(99, 102, 241)',
       point: 'rgb(99, 102, 241)',
       shadow: 'rgba(99, 102, 241, 0.2)'
+    },
+    watertemperature: {
+      gradient: 'rgba(59, 130, 246, 0.4)',
+      gradientEnd: 'rgba(59, 130, 246, 0.05)',
+      border: 'rgb(59, 130, 246)',
+      point: 'rgb(59, 130, 246)',
+      shadow: 'rgba(59, 130, 246, 0.2)'
+    },
+    uv: {
+      gradient: 'rgba(251, 146, 60, 0.4)',
+      gradientEnd: 'rgba(251, 146, 60, 0.05)',
+      border: 'rgb(251, 146, 60)',
+      point: 'rgb(251, 146, 60)',
+      shadow: 'rgba(251, 146, 60, 0.2)'
+    },
+    turbidity: {
+      gradient: 'rgba(37, 99, 235, 0.4)',
+      gradientEnd: 'rgba(37, 99, 235, 0.05)',
+      border: 'rgb(37, 99, 235)',
+      point: 'rgb(37, 99, 235)',
+      shadow: 'rgba(37, 99, 235, 0.2)'
+    },
+    voltage: {
+      gradient: 'rgba(34, 197, 94, 0.4)',
+      gradientEnd: 'rgba(34, 197, 94, 0.05)',
+      border: 'rgb(34, 197, 94)',
+      point: 'rgb(34, 197, 94)',
+      shadow: 'rgba(34, 197, 94, 0.2)'
+    },
+    current: {
+      gradient: 'rgba(139, 92, 246, 0.4)',
+      gradientEnd: 'rgba(139, 92, 246, 0.05)',
+      border: 'rgb(139, 92, 246)',
+      point: 'rgb(139, 92, 246)',
+      shadow: 'rgba(139, 92, 246, 0.2)'
     }
   }
 
@@ -320,7 +360,8 @@ export default function Dashboard() {
 
   // Enhanced SensorGauge with larger circles and better centering
   const SensorGauge = ({ title, value, unit, min = 0, max = 100, color = 'green' }) => {
-    const percentage = ((value - min) / (max - min)) * 100
+    const safeValue = value !== null && value !== undefined ? value : min
+    const percentage = ((safeValue - min) / (max - min)) * 100
     const clampedPercentage = Math.min(Math.max(percentage, 0), 100)
 
     const colorMap = {
@@ -329,7 +370,8 @@ export default function Dashboard() {
       cyan: '#06b6d4',
       yellow: '#eab308',
       purple: '#8b5cf6',
-      pink: '#ec4899'
+      pink: '#ec4899',
+      blue: '#3b82f6'
     }
 
     const gaugeSize = 120 // Increased size for better visibility
@@ -505,20 +547,30 @@ export default function Dashboard() {
 
               {realtime.error && (
                 <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                  Failed to refresh data
+                  Failed to refresh data: {realtime.error.message || 'Unknown error'}
                 </div>
               )}
 
               {readings ? (
-                <div className="grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-3">
+                <div className="grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-4">
                   <div className="flex justify-center">
                     <SensorGauge
-                      title="Temperature"
+                      title="Ambient Temp"
                       value={readings.t}
                       unit="°C"
                       min={15}
                       max={35}
                       color="orange"
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <SensorGauge
+                      title="Water Temp"
+                      value={readings.temp_water}
+                      unit="°C"
+                      min={10}
+                      max={40}
+                      color="blue"
                     />
                   </div>
                   <div className="flex justify-center">
@@ -561,7 +613,7 @@ export default function Dashboard() {
                       color="purple"
                     />
                   </div>
-                  {readings.ph && (
+                  {readings.ph !== null && readings.ph !== undefined && (
                     <div className="flex justify-center">
                       <SensorGauge
                         title="pH Level"
@@ -570,6 +622,66 @@ export default function Dashboard() {
                         min={0}
                         max={14}
                         color="pink"
+                      />
+                    </div>
+                  )}
+                  {readings.ec !== null && readings.ec !== undefined && (
+                    <div className="flex justify-center">
+                      <SensorGauge
+                        title="Conductivity"
+                        value={readings.ec}
+                        unit="µS/cm"
+                        min={0}
+                        max={2000}
+                        color="cyan"
+                      />
+                    </div>
+                  )}
+                  {readings.u !== null && readings.u !== undefined && readings.u > 0 && (
+                    <div className="flex justify-center">
+                      <SensorGauge
+                        title="UV Index"
+                        value={readings.u}
+                        unit=""
+                        min={0}
+                        max={15}
+                        color="orange"
+                      />
+                    </div>
+                  )}
+                  {readings.turbidity !== null && readings.turbidity !== undefined && (
+                    <div className="flex justify-center">
+                      <SensorGauge
+                        title="Turbidity"
+                        value={readings.turbidity}
+                        unit="NTU"
+                        min={0}
+                        max={100}
+                        color="blue"
+                      />
+                    </div>
+                  )}
+                  {readings.voltage !== null && readings.voltage !== undefined && (
+                    <div className="flex justify-center">
+                      <SensorGauge
+                        title="Voltage"
+                        value={readings.voltage}
+                        unit="V"
+                        min={0}
+                        max={15}
+                        color="green"
+                      />
+                    </div>
+                  )}
+                  {readings.current !== null && readings.current !== undefined && (
+                    <div className="flex justify-center">
+                      <SensorGauge
+                        title="Current"
+                        value={readings.current}
+                        unit="A"
+                        min={0}
+                        max={5}
+                        color="purple"
                       />
                     </div>
                   )}
@@ -645,7 +757,7 @@ export default function Dashboard() {
             </div>
 
             {/* Additional charts for pH and Conductivity if available */}
-            {(historicalData.ph.length > 0 || historicalData.conductivity.length > 0) && (
+            {(historicalData.ph.length > 0 || historicalData.conductivity.length > 0 || historicalData.waterTemperature.length > 0) && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
                 {historicalData.ph.length > 0 && (
                   <ChartContainer title="pH Level">
@@ -663,6 +775,62 @@ export default function Dashboard() {
                       <Line
                         data={createChartData(historicalData.conductivity, 'Conductivity', 'conductivity')}
                         options={createChartOptions('Conductivity')}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+                {historicalData.waterTemperature.length > 0 && (
+                  <ChartContainer title="Water Temperature">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.waterTemperature, 'Water Temperature', 'watertemperature')}
+                        options={createChartOptions('Water Temperature', 10, 40)}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+              </div>
+            )}
+
+            {/* Additional charts for UV, Turbidity, Voltage, and Current if available */}
+            {(historicalData.uv.length > 0 || historicalData.turbidity.length > 0 || historicalData.voltage.length > 0 || historicalData.current.length > 0) && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+                {historicalData.uv.length > 0 && (
+                  <ChartContainer title="UV Index">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.uv, 'UV Index', 'uv')}
+                        options={createChartOptions('UV Index', 0, 15)}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+                {historicalData.turbidity.length > 0 && (
+                  <ChartContainer title="Turbidity">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.turbidity, 'Turbidity', 'turbidity')}
+                        options={createChartOptions('Turbidity', 0, 100)}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+                {historicalData.voltage.length > 0 && (
+                  <ChartContainer title="Voltage">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.voltage, 'Voltage', 'voltage')}
+                        options={createChartOptions('Voltage', 0, 15)}
+                      />
+                    </div>
+                  </ChartContainer>
+                )}
+                {historicalData.current.length > 0 && (
+                  <ChartContainer title="Current">
+                    <div className="h-56 md:h-64 lg:h-72">
+                      <Line
+                        data={createChartData(historicalData.current, 'Current', 'current')}
+                        options={createChartOptions('Current', 0, 5)}
                       />
                     </div>
                   </ChartContainer>
@@ -774,57 +942,60 @@ export default function Dashboard() {
 
       setHistoricalData(prev => {
         const maxDataPoints = 20
+        const timeLabel = new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
+          hour: '2-digit', 
+          minute: '2-digit' 
+        })
         
         return {
           temperature: [...prev.temperature.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.t
           }],
           humidity: [...prev.humidity.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.h
           }],
           light: [...prev.light.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.l
           }],
           battery: [...prev.battery.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.b
           }],
           pressure: [...prev.pressure.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.p
           }],
           ph: newReading.ph ? [...prev.ph.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.ph
           }] : prev.ph,
           conductivity: newReading.ec ? [...prev.conductivity.slice(-maxDataPoints), {
-            x: new Date(newReading.timestamp).toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }),
+            x: timeLabel,
             y: newReading.ec
-          }] : prev.conductivity
+          }] : prev.conductivity,
+          waterTemperature: newReading.temp_water ? [...prev.waterTemperature.slice(-maxDataPoints), {
+            x: timeLabel,
+            y: newReading.temp_water
+          }] : prev.waterTemperature,
+          uv: newReading.u ? [...prev.uv.slice(-maxDataPoints), {
+            x: timeLabel,
+            y: newReading.u
+          }] : prev.uv,
+          turbidity: newReading.turbidity ? [...prev.turbidity.slice(-maxDataPoints), {
+            x: timeLabel,
+            y: newReading.turbidity
+          }] : prev.turbidity,
+          voltage: newReading.voltage ? [...prev.voltage.slice(-maxDataPoints), {
+            x: timeLabel,
+            y: newReading.voltage
+          }] : prev.voltage,
+          current: newReading.current ? [...prev.current.slice(-maxDataPoints), {
+            x: timeLabel,
+            y: newReading.current
+          }] : prev.current
         }
       })
     }

@@ -31,7 +31,13 @@ const transformTelemetryData = (apiData) => {
   }
 }
 
-export default function useRealtimeTelemetry({ userid, auid, model, intervalMs = 5000, maxBackoffMs = 30000 }) {
+export default function useRealtimeTelemetry({ 
+  userid, 
+  auid, 
+  model, 
+  intervalMs = 5000, 
+  maxBackoffMs = 30000
+}) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -103,8 +109,22 @@ export default function useRealtimeTelemetry({ userid, auid, model, intervalMs =
         setError(new Error('No telemetry data available'))
         
       } catch (e) {
-        console.error('💥 Error fetching telemetry:', e)
-        setError(e)
+        // Filter out WebSocket/Socket.IO errors if we're using polling
+        // These errors can occur from cached code or browser extensions
+        const isWebSocketError = e?.message?.includes('websocket') || 
+                                 e?.message?.includes('WebSocket') ||
+                                 e?.name === 'TransportError' ||
+                                 e?.constructor?.name === 'TransportError'
+        
+        if (isWebSocketError) {
+          console.warn('⚠️ WebSocket error detected (can be safely ignored when using polling):', e.message)
+          // Don't set error state for WebSocket errors when using polling
+          // Continue with polling instead
+        } else {
+          console.error('💥 Error fetching telemetry:', e)
+          setError(e)
+        }
+        
         // Progressive backoff on errors
         backoffRef.current = Math.min(backoffRef.current * 2, maxBackoffMs)
         console.log(`⏰ Backoff increased to: ${backoffRef.current}ms`)
@@ -134,7 +154,15 @@ export default function useRealtimeTelemetry({ userid, auid, model, intervalMs =
     }
   }, [userid, auid, model, intervalMs, maxBackoffMs])
 
-  console.log('🔄 useRealtimeTelemetry render state:', { data, loading, error, lastUpdated })
+  // Filter out WebSocket errors from the returned error state
+  const filteredError = error && (
+    error?.message?.includes('websocket') || 
+    error?.message?.includes('WebSocket') ||
+    error?.name === 'TransportError' ||
+    error?.constructor?.name === 'TransportError'
+  ) ? null : error
+
+  console.log('🔄 useRealtimeTelemetry render state:', { data, loading, error: filteredError, lastUpdated })
   
-  return { data, loading, error, lastUpdated }
+  return { data, loading, error: filteredError, lastUpdated }
 }

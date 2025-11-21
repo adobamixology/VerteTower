@@ -87,7 +87,7 @@ export default function Partners() {
           </p>
         </div>
 
-        {/* Category Filter */}
+        {/* Category Filter
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           <button
             onClick={() => setActiveCategory("All")}
@@ -116,63 +116,7 @@ export default function Partners() {
           ))}
         </div>
 
-        {/* Static Grid View */}
-        <div className="hidden lg:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-12">
-          {filteredPartners.map((partner, index) => (
-            <a
-              key={index}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:border-green-300 transition-all duration-300 transform hover:-translate-y-1"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className="flex flex-col items-center justify-center h-full">
-                <div className="h-16 mb-3 flex items-center justify-center">
-                  <img
-                    src={partner.logo}
-                    alt={`${partner.name} logo`}
-                    className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-500 text-center group-hover:text-green-600 transition-colors duration-200">
-                  {partner.category}
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Mobile & Tablet Carousel */}
-        <div className="lg:hidden mb-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {filteredPartners.map((partner, index) => (
-              <a
-                key={index}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow duration-200"
-              >
-                <div className="flex flex-col items-center justify-center h-full">
-                  <div className="h-12 mb-2 flex items-center justify-center">
-                    <img
-                      src={partner.logo}
-                      alt={`${partner.name} logo`}
-                      className="max-h-full max-w-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  <span className="text-xs text-gray-500 text-center">
-                    {partner.category}
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
+        
 
         {/* Animated Marquee Section */}
         <div className="border-t border-gray-200 pt-12">

@@ -14,13 +14,21 @@ export default function Contact() {
   const [loading, setLoading] = useState(false)
 
   const interests = [
-    'Commercial Farming',
-    'Home Gardening',
-    'Educational Institution',
-    'Research Project',
-    'Investment Opportunity',
-    'Partnership',
-    'Other'
+  'Vertical Farming Setup',
+  'Hydroponic System Installation',
+  'Smart Agriculture Implementation',
+  'Urban Farming Development',
+  'Sustainable Food Production',
+  'Agricultural Technology Solutions',
+  'Indoor Farming Operations',
+  'Crop Optimization Systems',
+  'Farm Automation Integration',
+  'Agricultural Education Programs',
+  'Research Collaboration',
+  'Commercial Farming Partnership',
+  'Food Supply Chain Innovation',
+  'Green Technology Investment',
+  'Custom Farming Solution'
   ]
 
   const handleChange = (e) => {
@@ -265,8 +273,8 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-gray-900 text-lg">Email Us</h3>
                     <p className="text-gray-600 mt-1">
-                      info@vertetower.com<br />
-                      support@vertetower.com
+                      info@vertetower.com
+                      {/* support@vertetower.com */}
                     </p>
                   </div>
                 </div>
