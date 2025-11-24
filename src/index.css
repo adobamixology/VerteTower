@@ -10,3 +10,22 @@
     @apply bg-gradient-body min-h-screen;
   }
 }
+
+/* ------------------------------
+   Custom Animations (Add here)
+--------------------------------*/
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 1.2s ease-out forwards;
+}
